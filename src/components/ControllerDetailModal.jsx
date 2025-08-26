@@ -1,9 +1,10 @@
-import React from 'react';
+import { useBoardStore } from '../store';
 
 //1. useBoardStore를 선언하여 zustand 스토어를 불러옵니다.
 //2. addBoard 함수를 불러와 보드를 업데이트 합니다.
 
 const ControllerDetailModal = ({ onClose }) => {
+  const { addBoard } = useBoardStore();
   const handleForm = (e) => {
     e.preventDefault();
 
@@ -16,6 +17,7 @@ const ControllerDetailModal = ({ onClose }) => {
       created_at: new Date().toISOString().split('T')[0],
     };
     onClose();
+    addBoard(newTask);
   };
   return (
     <div onClick={onClose} className="fixed inset-0 flex items-center justify-center bg-black/70 bg-opacity-50 z-50">

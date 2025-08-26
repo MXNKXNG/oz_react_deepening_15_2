@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import BoardDetailModal from './BoardDetailModal';
+import { useState } from 'react';
+import { useBoardStore } from '../store';
 import BoardConfirmModal from './BoardConfirmModal';
+import BoardDetailModal from './BoardDetailModal';
 import BoardEditModal from './BoardEditModal';
 
 const typeToKorean = (type) => {
@@ -17,7 +18,8 @@ const typeToKorean = (type) => {
 };
 
 const Boards = ({ type }) => {
-  const data = [];
+  const { data } = useBoardStore();
+
   const filteredData = data.filter((item) => item.type === type);
   const [item, setItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
